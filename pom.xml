@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~ Copyright (c) 2000-2013 Northwest Evaluation Association ~ All rights reserved.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <!--====================================================================-->
+    <!-- PROJECT ROOT CONFIGURATION -->
+    <!--====================================================================-->
+
+    <parent>
+        <artifactId>common-parent</artifactId>
+        <groupId>org.nwea.theta</groupId>
+        <version>3.0.6</version>
+    </parent>
+
+    <artifactId>selenium-drivers</artifactId>
+    <groupId>org.nwea.selenium.drivers</groupId>
+    <version>3.4.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>${project.artifactId}</name>
+
+    <!--====================================================================-->
+    <!-- SCM CONFIGURATION AND CI MANAGEMENT (required for maven release tasks) -->
+    <!--====================================================================-->
+
+    <scm>
+        <connection>scm:git:ssh://git@stash.americas.nwea.pvt/sel/selenium-drivers.git</connection>
+        <developerConnection>scm:git:ssh://git@stash.americas.nwea.pvt/sel/selenium-drivers.git</developerConnection>
+        <url>ssh://git@stash.americas.nwea.pvt/sel/selenium-drivers.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <ciManagement>
+        <url>${ci.base}/selenium-drivers</url>
+    </ciManagement>
+
+    <!--====================================================================-->
+    <!-- PROJECT PROPERTIES -->
+    <!--====================================================================-->
+
+    <properties>
+        <!--
+        update-selenium-drivers profile versions:
+        example 2.43.1 is version=2.43 patch=1
+        -->
+         <!--selenium sever jar-->
+        <selenium-java.version>3.4</selenium-java.version>
+        <selenium-java.patch>0</selenium-java.patch>
+
+        <!--iedriver-->
+        <iedriver.version>3.4</iedriver.version>
+        <iedriver.patch>0</iedriver.patch>
+
+        <!--chrome driver-->
+        <chrome.version>2.30</chrome.version>
+
+        <!--safari driver-->
+        <safari.version>2.48</safari.version>
+
+        <!--phantom js driver-->
+        <phantomjs.version>2.0.0</phantomjs.version>
+        <!--<phantomjsdriver.version>1.1.0</phantomjsdriver.version>-->
+    </properties>
+
+    <!--====================================================================-->
+    <!-- BUILD CONFIGURATION-->
+    <!--====================================================================-->
+
+    <profiles>
+        <profile>
+            <!-- use this profile to pull down the latest selenium webDrivers -->
+            <id>update-selenium-drivers</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.7</version>
+                        <executions>
+                            <execution>
+                                <id>download IE driver</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <!-- Selenium Server Jar -->
+                                        <get src="http://selenium-release.storage.googleapis.com/${selenium-java.version}/selenium-server-standalone-${selenium-java.version}.${selenium-java.patch}.jar" dest="${project.basedir}/src/main/resources/selenium-server-standalone.jar" />
+
+                                        <!-- Windows - InternetExplorer 64bit -->
+                                        <get src="http://selenium-release.storage.googleapis.com/${iedriver.version}/IEDriverServer_x64_${iedriver.version}.${iedriver.patch}.zip" dest="${project.build.directory}" />
+                                        <unzip src="${project.build.directory}/IEDriverServer_x64_${iedriver.version}.${iedriver.patch}.zip" dest="${project.basedir}/src/main/resources/org/nwea/selenium/driver/windows/internetexplorer/64bit" />
+
+                                        <!-- Windows - InternetExplorer 32bit -->
+                                        <get src="http://selenium-release.storage.googleapis.com/${iedriver.version}/IEDriverServer_Win32_${iedriver.version}.${iedriver.patch}.zip" dest="${project.build.directory}" />
+                                        <unzip src="${project.build.directory}/IEDriverServer_Win32_${iedriver.version}.${iedriver.patch}.zip" dest="${project.basedir}/src/main/resources/org/nwea/selenium/driver/windows/internetexplorer/32bit" />
+
+                                        <!-- Windows - PhantomJS 32bit -->
+                                        <!--<get src="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs.version}-windows.zip" dest="${project.build.directory}" />-->
+                                        <!--<unzip src="${project.build.directory}/phantomjs-${phantomjs.version}-windows.zip" dest="${project.basedir}/src/main/resources/org/nwea/selenium/driver/windows/phantomjs/32bit" />-->
+
+                                        <!-- Windows - Google Chrome 32bit -->
+                                        <get src="http://chromedriver.storage.googleapis.com/${chrome.version}/chromedriver_win32.zip" dest="${project.build.directory}" />
+                                        <unzip src="${project.build.directory}/chromedriver_win32.zip" dest="${project.basedir}/src/main/resources/org/nwea/selenium/driver/windows/googlechrome/32bit" />
+
+                                        <!-- Linux - Google Chrome 64bit -->
+                                        <get src="http://chromedriver.storage.googleapis.com/${chrome.version}/chromedriver_linux64.zip" dest="${project.build.directory}" />
+                                        <unzip src="${project.build.directory}/chromedriver_linux64.zip" dest="${project.basedir}/src/main/resources/org/nwea/selenium/driver/linux/googlechrome/64bit" />
+                                        <chmod file="${project.basedir}/src/main/resources/org/nwea/selenium/driver/linux/googlechrome/64bit/chromedriver" perm="755" />
+
+                                        <!-- Linux - Google Chrome 32bit -->
+                                        <get src="http://chromedriver.storage.googleapis.com/${chrome.version}/chromedriver_linux32.zip" dest="${project.build.directory}" />
+                                        <unzip src="${project.build.directory}/chromedriver_linux32.zip" dest="${project.basedir}/src/main/resources/org/nwea/selenium/driver/linux/googlechrome/32bit" />
+                                        <chmod file="${project.basedir}/src/main/resources/org/nwea/selenium/driver/linux/googlechrome/32bit/chromedriver" perm="755" />
+
+                                        <!-- OSX - Google Chrome 64bit -->
+                                        <get src="http://chromedriver.storage.googleapis.com/${chrome.version}/chromedriver_mac64.zip" dest="${project.build.directory}" />
+                                        <unzip src="${project.build.directory}/chromedriver_mac64.zip" dest="${project.basedir}/src/main/resources/org/nwea/selenium/driver/osx/googlechrome/64bit" />
+                                        <chmod file="${project.basedir}/src/main/resources/org/nwea/selenium/driver/osx/googlechrome/64bit/chromedriver" perm="755" />
+
+                                        <!-- OSX - Safari -->
+                                        <!--<get src="http://selenium-release.storage.googleapis.com/${safari.version}/SafariDriver.safariextz" dest="${project.basedir}/src/main/resources/org/nwea/selenium/driver/osx/safari/SafariDriver.safariextz" />-->
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <!--====================================================================-->
+    <!-- DEPENDENCIES -->
+    <!--====================================================================-->
+
+    <dependencies>
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <!-- Selenium Dependencies -->
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-java.version}.${selenium-java.patch}</version>
+        </dependency>
+        <!--ghost driver pulls in an older dependency which conflicts with the latest seleniumhq versions-->
+        <!--<dependency>-->
+            <!--<groupId>com.github.detro.ghostdriver</groupId>-->
+            <!--<artifactId>phantomjsdriver</artifactId>-->
+            <!--<version>${phantomjsdriver.version}</version>-->
+        <!--</dependency>-->
+    </dependencies>
+
+</project>

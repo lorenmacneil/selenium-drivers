@@ -94,7 +94,7 @@ GOTO SWITCH
     ECHO ***************************************
     ECHO.
     cd %SCRIPTPATH%
-    git fetch origin develop
+    git fetch origin master
     git reset --hard FETCH_HEAD
     git clean -f -d
     :: -f -d Remove untracked files and untracked directories from the current directory.

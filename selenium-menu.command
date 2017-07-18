@@ -98,7 +98,7 @@ GIT_UPDATE () {
     echo "***************************************"
     cd "$SCRIPTPATH"
     git --version
-    git fetch origin develop
+    git fetch origin master
     git reset --hard FETCH_HEAD
     git clean -df
     sleep 2

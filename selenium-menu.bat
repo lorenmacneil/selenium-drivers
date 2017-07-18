@@ -68,11 +68,8 @@ GOTO SWITCH
             SET HUB_IP="%3"
         )
     )
-    SET FIREFOX=-browser browserName=firefox,setjavascriptEnabled=true,acceptSslCerts=true,version=%VERSION%,maxInstances=1,applicationName=%COMPUTERNAME%
-    SET IE=-browser browserName="internet explorer",setjavascriptEnabled=true,acceptSslCerts=true,version=%VERSION%,maxInstances=1,applicationName=%COMPUTERNAME%
     SET CHROME=-browser browserName=chrome,setjavascriptEnabled=true,acceptSslCerts=true,version=%VERSION%,maxInstances=1,applicationName=%COMPUTERNAME%
-    SET OPERA=-browser browserName=opera,setjavascriptEnabled=true,acceptSslCerts=true,version=%VERSION%,maxInstances=1,applicationName=%COMPUTERNAME%
-    java -jar %SERVERPATH% -role webdriver -timeout 60000 -browserTimeout 60000 -maxSession 1 -port 5554 -hub http://%HUB_IP%:4444/grid/register %CHROME%
+    java %CHROME% -jar %SERVERPATH% -role webdriver -timeout 60000 -browserTimeout 60000 -maxSession 1 -port 5554 -hub http://%HUB_IP%:4444/grid/register
     GOTO MENU
 
 :NODE_HUB_IP

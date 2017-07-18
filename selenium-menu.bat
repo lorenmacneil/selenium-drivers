@@ -47,7 +47,7 @@ GOTO SWITCH
     FOR /F "tokens=2,3" %%A IN ('ping %computername% -n 1 -4') DO IF "from"== "%%A" set "IP=%%~B"
     ECHO Your IP Address is: %IP:~0,-1%
     ECHO.
-    java -jar %SERVERPATH% -role hub %HUBJSONPATH% -maxSession 5 -unregisterIfStillDownAfter 60000 -browserTimeout 0 -cleanUpCycle 5000 -timeout 300
+    java -jar %SERVERPATH% -role hub %HUBJSONPATH% -maxSession 5 -browserTimeout 0 -cleanUpCycle 5000 -timeout 300
     GOTO MENU
 
 :NODE_DEFAULT
@@ -72,7 +72,7 @@ GOTO SWITCH
     SET IE=-browser browserName="internet explorer",setjavascriptEnabled=true,acceptSslCerts=true,version=%VERSION%,maxInstances=1,applicationName=%COMPUTERNAME%
     SET CHROME=-browser browserName=chrome,setjavascriptEnabled=true,acceptSslCerts=true,version=%VERSION%,maxInstances=1,applicationName=%COMPUTERNAME%
     SET OPERA=-browser browserName=opera,setjavascriptEnabled=true,acceptSslCerts=true,version=%VERSION%,maxInstances=1,applicationName=%COMPUTERNAME%
-    java -jar %SERVERPATH% -role webdriver -timeout 60000 -browserTimeout 60000 -nodeTimeout 60000 -maxSession 1 -port 5554 -hub http://%HUB_IP%:4444/grid/register %FIREFOX% %IE% %CHROME% %OPERA% %CHROMEDRIVER% %IEDRIVER%
+    java -jar %SERVERPATH% -role webdriver -timeout 60000 -browserTimeout 60000 -maxSession 1 -port 5554 -hub http://%HUB_IP%:4444/grid/register %CHROME%
     GOTO MENU
 
 :NODE_HUB_IP

@@ -59,7 +59,7 @@ HUB () {
     echo Your IP Address is:
     ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'
     echo
-    java -jar "$SERVERPATH" -role hub $HUBJSONPATH -maxSession 4 -unregisterIfStillDownAfter 60000 -browserTimeout 0 -cleanUpCycle 5000 -timeout 300
+    java -jar "$SERVERPATH" -role hub $HUBJSONPATH -maxSession 4 -browserTimeout 0 -cleanUpCycle 5000 -timeout 300
 }
 
 NODE_DEFAULT () {
@@ -87,7 +87,7 @@ NODE_HUB_IP () {
 }
 
 NODE () {
-    java -jar "$SERVERPATH" $CHROMEDRIVER -browserTimeout 60000 -nodeTimeout 60000 -maxSession 1 -role webdriver -port 5554 -hub http://$HUB_IP:4444/grid/register $FIREFOX $SAFARI $CHROME
+    java -jar "$SERVERPATH" $CHROMEDRIVER -browserTimeout 60000 -nodeTimeout 60000 -maxSession 1 -role webdriver -port 5554 -hub http://$HUB_IP:4444/grid/register $CHROME
 }
 
 GIT_UPDATE () {

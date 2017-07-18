@@ -67,7 +67,7 @@ GOTO SWITCH
         )
     )
     SET CHROME=-browser browserName=chrome,setjavascriptEnabled=true,acceptSslCerts=true,version=%VERSION%,maxInstances=1,applicationName=%COMPUTERNAME%
-    java %CHROMEDRIVER% -jar %SERVERPATH% -role webdriver -timeout 60000 -browserTimeout 60000 -nodeTimeout 60000 -maxSession 1 -port 5554 -hub http://%HUB_IP%:4444/grid/register %CHROME%
+    java %CHROMEDRIVER% -jar %SERVERPATH% -role webdriver -timeout 60000 -browserTimeout 60000 -maxSession 1 -port 5554 -hub http://%HUB_IP%:4444/grid/register %CHROME%
     GOTO MENU
 
 :NODE_HUB_IP

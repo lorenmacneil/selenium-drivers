@@ -29,9 +29,7 @@ echo ServerPath = %SERVERPATH%
 
 :: define browser driver paths
 SET CHROMEDRIVER=-Dwebdriver.chrome.driver="%SCRIPTPATH%src\main\resources\org\nwea\selenium\driver\windows\googlechrome\32bit\chromedriver.exe"
-SET IEDRIVER=-Dwebdriver.ie.driver="%SCRIPTPATH%src\main\resources\org\nwea\selenium\driver\windows\internetexplorer\32bit\IEDriverServer.exe"
 echo ChromeDriverPath = %CHROMEDRIVER%
-echo IEDriverPath = %IEDRIVER%
 
 :: define variable, else script throws an error.
 SET HUB_IP=""
@@ -69,7 +67,7 @@ GOTO SWITCH
         )
     )
     SET CHROME=-browser browserName=chrome,setjavascriptEnabled=true,acceptSslCerts=true,version=%VERSION%,maxInstances=1,applicationName=%COMPUTERNAME%
-    java %CHROME% -jar %SERVERPATH% -role webdriver -timeout 60000 -browserTimeout 60000 -maxSession 1 -port 5554 -hub http://%HUB_IP%:4444/grid/register
+    java %CHROMEDRIVER% -jar %SERVERPATH% -role webdriver -timeout 60000 -browserTimeout 60000 -nodeTimeout 60000 -maxSession 1 -port 5554 -hub http://%HUB_IP%:4444/grid/register %CHROME%
     GOTO MENU
 
 :NODE_HUB_IP

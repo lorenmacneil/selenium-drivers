@@ -61,7 +61,7 @@ GOTO SWITCH
     )
     IF %HUB_IP%=="" (
         IF "%~3"=="" (
-            SET HUB_IP="10.125.0.76"
+            SET HUB_IP="10.125.0.244"
         ) ELSE (
             SET HUB_IP="%3"
         )

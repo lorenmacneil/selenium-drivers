@@ -69,7 +69,7 @@ NODE_DEFAULT () {
     echo           "Start Selenium Node"
     echo "***************************************"
     # HUB_IP=webmap.americas.nwea.pvt
-    HUB_IP=10.125.0.76
+    HUB_IP=10.90.1.244
     NODE
 }
 
@@ -87,7 +87,7 @@ NODE_HUB_IP () {
 }
 
 NODE () {
-    java -jar "$SERVERPATH" $CHROMEDRIVER -browserTimeout 60000 -nodeTimeout 60000 -maxSession 1 -role webdriver -port 5554 -hub http://$HUB_IP:4444/grid/register $CHROME
+    java $CHROMEDRIVER -jar "$SERVERPATH" -browserTimeout 60000 -maxSession 1 -role webdriver -port 5554 -hub http://$HUB_IP:4444/grid/register $CHROME
 }
 
 GIT_UPDATE () {

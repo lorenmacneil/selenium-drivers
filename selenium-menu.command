@@ -38,7 +38,7 @@ echo $CHROMEDRIVER
 # define what group identifier to use
 if ["$2" -eq ""]
 then
-    VERSION="3.4.0"
+    VERSION="3.5.3"
 else
     VERSION="$2"
 fi
@@ -69,7 +69,7 @@ NODE_DEFAULT () {
     echo           "Start Selenium Node"
     echo "***************************************"
     # HUB_IP=webmap.americas.nwea.pvt
-    HUB_IP=10.90.1.244
+    HUB_IP=10.125.0.76
     NODE
 }
 

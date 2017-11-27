@@ -49,15 +49,15 @@
         example 2.43.1 is version=2.43 patch=1
         -->
          <!--selenium sever jar-->
-        <selenium-java.version>3.5</selenium-java.version>
-        <selenium-java.patch>3</selenium-java.patch>
+        <selenium-java.version>3.6</selenium-java.version>
+        <selenium-java.patch>0</selenium-java.patch>
 
         <!--iedriver-->
-        <iedriver.version>3.5</iedriver.version>
-        <iedriver.patch>1</iedriver.patch>
+        <iedriver.version>3.7</iedriver.version>
+        <iedriver.patch>0</iedriver.patch>
 
         <!--chrome driver-->
-        <chrome.version>2.32</chrome.version>
+        <chrome.version>2.33</chrome.version>
 
         <!--safari driver-->
         <safari.version>2.48</safari.version>

@@ -38,7 +38,7 @@ echo $CHROMEDRIVER
 # define what group identifier to use
 if ["$2" -eq ""]
 then
-    VERSION="3.5.3"
+    VERSION="3.8.0"
 else
     VERSION="$2"
 fi

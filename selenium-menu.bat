@@ -55,7 +55,7 @@ GOTO SWITCH
     ECHO        Starting Selenium Node
     ECHO ***************************************
     IF "%~2"=="" (
-        SET VERSION="3.5.3"
+        SET VERSION="3.8.0"
     ) ELSE (
         SET VERSION="%2"
     )

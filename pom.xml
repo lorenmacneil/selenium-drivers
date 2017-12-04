@@ -19,7 +19,7 @@
 
     <artifactId>selenium-drivers</artifactId>
     <groupId>org.nwea.selenium.drivers</groupId>
-    <version>3.8.0-SNAPSHOT</version>
+    <version>3.6.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
@@ -49,7 +49,7 @@
         example 2.43.1 is version=2.43 patch=1
         -->
          <!--selenium sever jar-->
-        <selenium-java.version>3.8</selenium-java.version>
+        <selenium-java.version>3.6</selenium-java.version>
         <selenium-java.patch>0</selenium-java.patch>
 
         <!--iedriver-->

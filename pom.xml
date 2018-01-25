@@ -19,7 +19,7 @@
 
     <artifactId>selenium-drivers</artifactId>
     <groupId>org.nwea.selenium.drivers</groupId>
-    <version>3.6.0-SNAPSHOT</version>
+    <version>3.6.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
@@ -53,17 +53,17 @@
         <selenium-java.patch>0</selenium-java.patch>
 
         <!--iedriver-->
-        <iedriver.version>3.7</iedriver.version>
+        <iedriver.version>3.8</iedriver.version>
         <iedriver.patch>0</iedriver.patch>
 
         <!--chrome driver-->
-        <chrome.version>2.33</chrome.version>
+        <chrome.version>2.35</chrome.version>
 
         <!--safari driver-->
-        <safari.version>2.48</safari.version>
+        <!--<safari.version>2.48</safari.version>-->
 
         <!--phantom js driver-->
-        <phantomjs.version>2.0.0</phantomjs.version>
+        <!--<phantomjs.version>2.0.0</phantomjs.version>-->
         <!--<phantomjsdriver.version>1.1.0</phantomjsdriver.version>-->
     </properties>
 
@@ -115,9 +115,9 @@
                                         <chmod file="${project.basedir}/src/main/resources/org/nwea/selenium/driver/linux/googlechrome/64bit/chromedriver" perm="755" />
 
                                         <!-- Linux - Google Chrome 32bit -->
-                                        <get src="http://chromedriver.storage.googleapis.com/${chrome.version}/chromedriver_linux32.zip" dest="${project.build.directory}" />
-                                        <unzip src="${project.build.directory}/chromedriver_linux32.zip" dest="${project.basedir}/src/main/resources/org/nwea/selenium/driver/linux/googlechrome/32bit" />
-                                        <chmod file="${project.basedir}/src/main/resources/org/nwea/selenium/driver/linux/googlechrome/32bit/chromedriver" perm="755" />
+                                        <!--<get src="http://chromedriver.storage.googleapis.com/${chrome.version}/chromedriver_linux32.zip" dest="${project.build.directory}" />-->
+                                        <!--<unzip src="${project.build.directory}/chromedriver_linux32.zip" dest="${project.basedir}/src/main/resources/org/nwea/selenium/driver/linux/googlechrome/32bit" />-->
+                                        <!--<chmod file="${project.basedir}/src/main/resources/org/nwea/selenium/driver/linux/googlechrome/32bit/chromedriver" perm="755" />-->
 
                                         <!-- OSX - Google Chrome 64bit -->
                                         <get src="http://chromedriver.storage.googleapis.com/${chrome.version}/chromedriver_mac64.zip" dest="${project.build.directory}" />

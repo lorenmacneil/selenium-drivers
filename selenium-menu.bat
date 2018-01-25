@@ -1,10 +1,6 @@
 @TITLE Selenium-Grid
 @ECHO off
 color 0a
-ECHO ***************************************
-ECHO        Stop last Java instance
-ECHO ***************************************
-taskkill /f /im java.exe
 
 ECHO.
 ECHO.
@@ -35,6 +31,12 @@ echo ChromeDriverPath = %CHROMEDRIVER%
 SET HUB_IP=""
 
 GOTO SWITCH
+
+:KILL_JAVA
+    ECHO ***************************************
+    ECHO        Stop last Java instance
+    ECHO ***************************************
+    taskkill /f /im java.exe
 
 :HUB
     ECHO.
@@ -148,7 +150,8 @@ GOTO SWITCH
     ECHO    3 - Node (specify hub ip address)
     ECHO    4 - Git Update (from stash)
     ECHO    5 - Clean Temp
-    ECHO    6 - Exit
+    ECHO    6 - Kill Java
+    ECHO    7 - Exit
     ECHO.
     SET /P M="Type 1, 2, 3 or 4 then press ENTER: "
     ECHO.
@@ -158,7 +161,8 @@ GOTO SWITCH
     IF %M%==3 GOTO NODE_HUB_IP
     IF %M%==4 GOTO GIT_UPDATE
     IF %M%==5 GOTO CLEAN_TEMP
-    IF %M%==6 GOTO EXIT
+    IF %M%==6 GOTO KILL_JAVA
+    IF %M%==7 GOTO EXIT
 
 :SWITCH
     ECHO.
@@ -173,3 +177,4 @@ GOTO SWITCH
     IF "%~1"=="3" GOTO NODE_HUB_IP
     IF "%~1"=="4" GOTO GIT_UPDATE
     IF "%~1"=="5" GOTO CLEAN_TEMP
+    IF "%~1"=="6" GOTO KILL_JAVA

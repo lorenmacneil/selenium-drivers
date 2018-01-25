@@ -1,8 +1,4 @@
 #!/bin/bash
-echo "***************************************"
-echo       "Stop last instance of Java"
-echo "***************************************"
-killall java
 
 echo
 echo
@@ -49,6 +45,13 @@ FIREFOX="-browser browserName=firefox,setjavascriptEnabled=true,acceptSslCerts=t
 SAFARI="-browser browserName=safari,setjavascriptEnabled=true,acceptSslCerts=true,version=$VERSION,maxInstances=1,applicationName=$COMPUTERNAME"
 CHROME="-browser browserName=chrome,setjavascriptEnabled=true,acceptSslCerts=true,version=$VERSION,maxInstances=1,applicationName=$COMPUTERNAME"
 
+
+KILL_JAVA () {
+    echo "***************************************"
+    echo       "Stop last instance of Java"
+    echo "***************************************"
+    killall java
+}
 
 HUB () {
     echo
@@ -120,7 +123,8 @@ MENU () {
     echo     "2 - Node (default hub)"
     echo     "3 - Node (specify hub ip address)"
     echo     "4 - Git Update (from stash)"
-    echo     "5 - Exit"
+    echo     "5 - Kill Java"
+    echo     "6 - Exit"
     echo
     echo "Type 1, 2, 3 or 4 then press ENTER: "
     read choice
@@ -135,6 +139,8 @@ MENU () {
         4)
             GIT_UPDATE ;;
         5)
+            KILL_JAVA ;;
+        6)
             EXIT ;;
         *)
             echo "\"$choice\" is not valid "; sleep 2 ;;
@@ -158,6 +164,8 @@ case "$1" in
     4)
         GIT_UPDATE ;;
     5)
+        KILL_JAVA ;;
+    6)
         EXIT ;;
     *)
         MENU ;;

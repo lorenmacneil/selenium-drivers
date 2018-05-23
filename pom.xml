@@ -57,7 +57,7 @@
         <iedriver.patch>0</iedriver.patch>
 
         <!--chrome driver-->
-        <chrome.version>2.35</chrome.version>
+        <chrome.version>2.38</chrome.version>
 
         <!--safari driver-->
         <!--<safari.version>2.48</safari.version>-->

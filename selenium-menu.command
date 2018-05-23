@@ -72,7 +72,7 @@ NODE_DEFAULT () {
     echo           "Start Selenium Node"
     echo "***************************************"
     # HUB_IP=webmap.americas.nwea.pvt
-    HUB_IP=10.125.0.30
+    HUB_IP=10.125.0.29
     NODE
 }
 
